@@ -68,3 +68,17 @@ Tipo de Conta	E-mail	Senha	O que pode fazer?
 Admin	admin@hotel.com	admin123	Visualizar todas as reservas, cancelar reservas, liberar quartos.
 Cliente	viajante@teste.com	123	Visualizar quartos disponíveis, fazer reservas.
 '''
+
+Dependências:
+
+# Entrar na pasta do projeto
+cd sistema-hotel-pooa
+
+# Instalar Backend
+cd backend
+npm install
+
+# Voltar e Instalar Frontend
+cd ..
+cd frontend
+npm install
