@@ -1,0 +1,132 @@
+/* --- BOTÕES GLOBAIS --- */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Primary Button (Verde) */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  width: auto;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Save Button */
+.btn-save {
+  background-color: var(--accent);
+  color: white;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+  background-color: #218838;
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f8f9fa;
+  border-color: #999;
+}
+
+/* Back Button */
+.btn-back {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  width: auto;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #5a6268;
+  transform: translateX(-2px);
+}
+
+/* Reserve Button */
+.btn-reserve {
+  background: linear-gradient(135deg, var(--accent) 0%, #20c997 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-reserve:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+}
+
+/* Reserve Disabled Button */
+.btn-reserve-disabled {
+  background: #ccc;
+  color: #666;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Continue Button */
+.btn-continue {
+  background: white;
+  color: var(--primary);
+  padding: 14px 24px;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-continue:hover {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+}

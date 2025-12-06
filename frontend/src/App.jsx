@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import './App.css'
+
+// Importar páginas
+import AuthScreen from './pages/AuthScreen'
+import ClienteDashboard from './pages/ClienteDashboard'
+import ProfileScreen from './pages/ProfileScreen'
+import RoomDetails from './pages/RoomDetails'
+import AdminDashboard from './pages/AdminDashboard'
+import MinhasReservas from './pages/MinhasReservas'
+
+// Importar componente de proteção
+import ProtectedRoute from './components/ProtectedRoute'
+
+=======
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -202,12 +221,24 @@ function AdminDashboard({ user, onLogout }) {
 }
 
 // === ROTAS E PROTEÇÃO ===
+>>>>>>> d9e2514a2ca3b1106bb09e0c24f1a6a1728bb9cf
 function App() {
   const [user, setUser] = useState(() => {
     const salvo = localStorage.getItem('hotel_user')
     return salvo ? JSON.parse(salvo) : null
   })
 
+<<<<<<< HEAD
+  const handleLogin = (u) => {
+    setUser(u)
+    localStorage.setItem('hotel_user', JSON.stringify(u))
+  }
+
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem('hotel_user')
+    window.location.href = '/'
+=======
   const handleLogin = (u) => { setUser(u); localStorage.setItem('hotel_user', JSON.stringify(u)) }
   
   const handleLogout = () => { 
@@ -220,11 +251,44 @@ function App() {
     if (!user) return <Navigate to="/" />
     if (adminOnly && !user.isAdmin) return <Navigate to="/cliente" />
     return children
+>>>>>>> d9e2514a2ca3b1106bb09e0c24f1a6a1728bb9cf
   }
 
   return (
     <BrowserRouter>
       <Routes>
+<<<<<<< HEAD
+        <Route path="/" element={<AuthScreen onLogin={handleLogin} />} />
+
+        <Route path="/cliente" element={
+          <ProtectedRoute user={user}>
+            <ClienteDashboard user={user} onLogout={handleLogout} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/perfil" element={
+          <ProtectedRoute user={user}>
+            <ProfileScreen user={user} onLogout={handleLogout} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/quarto/:roomId" element={
+          <ProtectedRoute user={user}>
+            <RoomDetails user={user} onLogout={handleLogout} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/admin" element={
+          <ProtectedRoute user={user} adminOnly={true}>
+            <AdminDashboard user={user} onLogout={handleLogout} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/minhas-reservas" element={
+          <ProtectedRoute user={user}>
+            <MinhasReservas user={user} onLogout={handleLogout} />
+          </ProtectedRoute>
+=======
         <Route path="/" element={<AuthScreen onLogin={handleLogin}/>} />
         
         <Route path="/cliente" element={
@@ -237,6 +301,7 @@ function App() {
             <RotaPrivada adminOnly={true}>
                 <AdminDashboard user={user} onLogout={handleLogout}/>
             </RotaPrivada>
+>>>>>>> d9e2514a2ca3b1106bb09e0c24f1a6a1728bb9cf
         } />
       </Routes>
       <ToastContainer position="bottom-right" autoClose={3000} />

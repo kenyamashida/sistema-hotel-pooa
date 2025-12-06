@@ -1,0 +1,27 @@
+/* --- TELA DE LOGIN / CADASTRO --- */
+.auth-container {
+  max-width: 400px !important;
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* --- FORMULÁRIOS --- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.input-group .icon {
+  color: #888;
+  margin-right: 10px;
+}

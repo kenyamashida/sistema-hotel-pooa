@@ -1,0 +1,52 @@
+/* --- TABELA ADMIN --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background: #34495e;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* --- ADMIN HEADER --- */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  gap: 20px;
+  height: 50px;
+}
+
+.admin-header h2 {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.admin-header button {
+  width: auto;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

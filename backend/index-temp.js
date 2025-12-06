@@ -49,8 +49,7 @@ app.post('/cadastro', async (req, res) => {
     } catch (e) { res.status(500).json({error: e.message}) }
 });
 
-<<<<<<< HEAD
-// PERFIL - GET (buscar dados do usuário)
+// PERFIL - GET
 app.get('/perfil/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -60,14 +59,16 @@ app.get('/perfil/:id', async (req, res) => {
         } else {
             res.status(404).json({ error: 'Usuário não encontrado' });
         }
-    } catch (e) { res.status(500).json({ error: e.message }) }
+    } catch (e) { res.status(500).json({error: e.message}) }
 });
 
-// PERFIL - UPDATE (atualizar nome do usuário)
+// PERFIL - PUT
 app.put('/perfil/:id', async (req, res) => {
     const { id } = req.params;
     const { nome } = req.body;
     try {
+        if (!nome) return res.status(400).json({error: 'Nome é obrigatório'});
+        
         await db.query('UPDATE usuarios SET nome = ? WHERE id = ?', [nome, id]);
         res.json({ message: 'Perfil atualizado com sucesso!' });
     } catch (e) { res.status(500).json({ error: e.message }) }
@@ -99,22 +100,22 @@ app.get('/quartos', async (req, res) => {
     }
 });
 
-    // LISTAR COMODIDADES DE UM QUARTO
-    app.get('/quartos/:quarto_id/comodidades', async (req, res) => {
-        const { quarto_id } = req.params;
-        try {
-            const [comodidades] = await db.query(`
-                SELECT c.id, c.nome, c.icone, c.descricao
-                FROM comodidades c
-                JOIN quarto_comodidade qc ON c.id = qc.comodidade_id
-                WHERE qc.quarto_id = ?
-                ORDER BY c.nome ASC
-            `, [quarto_id]);
-            res.json(comodidades);
-        } catch (e) {
-            res.status(500).json({ error: e.message });
-        }
-    });
+// LISTAR COMODIDADES DE UM QUARTO
+app.get('/quartos/:quarto_id/comodidades', async (req, res) => {
+    const { quarto_id } = req.params;
+    try {
+        const [comodidades] = await db.query(`
+            SELECT c.id, c.nome, c.icone, c.descricao
+            FROM comodidades c
+            JOIN quarto_comodidade qc ON c.id = qc.comodidade_id
+            WHERE qc.quarto_id = ?
+            ORDER BY c.nome ASC
+        `, [quarto_id]);
+        res.json(comodidades);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 // RESERVAR QUARTO EM UMA DATA ESPECÍFICA
 app.post('/reservar', async (req, res) => {
@@ -197,36 +198,6 @@ app.delete('/reservas/:id/:usuario_id', async (req, res) => {
     } catch(e) {
         res.status(500).json({ error: e.message });
     }
-=======
-// LISTAR QUARTOS
-app.get('/quartos', async (req, res) => {
-    const [rows] = await db.query('SELECT * FROM quartos');
-    res.json(rows);
-});
-
-// RESERVAR
-app.post('/reservar', async (req, res) => {
-    const { usuario_id, quarto_id } = req.body;
-    await db.query('INSERT INTO reservas (usuario_id, quarto_id) VALUES (?, ?)', [usuario_id, quarto_id]);
-    await db.query('UPDATE quartos SET disponivel = FALSE WHERE id = ?', [quarto_id]);
-    res.json({ message: 'OK' });
-});
-
-// ADMIN
-app.get('/admin/reservas', async (req, res) => {
-    const [rows] = await db.query(`SELECT r.id, u.nome as usuario, q.nome as quarto FROM reservas r JOIN usuarios u ON r.usuario_id = u.id JOIN quartos q ON r.quarto_id = q.id`);
-    res.json(rows);
-});
-
-app.delete('/admin/reservas/:id', async (req, res) => {
-    const { id } = req.params;
-    const [reserva] = await db.query('SELECT quarto_id FROM reservas WHERE id = ?', [id]);
-    if(reserva.length > 0) {
-        await db.query('DELETE FROM reservas WHERE id = ?', [id]);
-        await db.query('UPDATE quartos SET disponivel = TRUE WHERE id = ?', [reserva[0].quarto_id]);
-    }
-    res.json({ message: 'OK' });
->>>>>>> d9e2514a2ca3b1106bb09e0c24f1a6a1728bb9cf
 });
 
 app.listen(3000, () => console.log('Servidor ON'));
